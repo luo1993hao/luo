@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luo.mapper.HistoryDataMapper">
+    <resultMap id="BaseResultMap" type="com.luo.model.StationHistoryData">
+        <id column="id" property="id"/>
+        <result column="area_code" property="areaCode"/>
+        <result column="station_id" property="stationId"/>
+        <result column="sensor_code" property="sensorCode"/>
+        <result column="create_time" property="createTime"/>
+        <result column="value" property="value"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.luo.model.StationHistoryData">
+	insert into
+		station_historydata(id,station_id, area_code,sensor_code,create_time,value) values (#{id},#{stationId}, #{areaCode},#{sensorCode},#{createTime},#{value})
+    </insert>
+    <select id="getList" resultMap="BaseResultMap">
+        select
+        station_id, area_code,sensor_code,create_time
+        from
+        station_historydata_37
+        <where>
+            <if test="stationId !=null">
+                AND station_id=#{stationId}
+            </if>
+            <if test="areaCode !=null">
+                AND area_code=#{areaCode}
+            </if>
+            <if test="sensorCode !=null">
+                AND sensor_code=#{sensorCode}
+            </if>
+            <if test="startTime !=null">
+                AND create_time between #{startTime} AND #{endTime}
+            </if>
+        </where>
+    </select>
+
+</mapper>
