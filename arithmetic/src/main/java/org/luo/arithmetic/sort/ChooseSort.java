@@ -8,7 +8,7 @@ package org.luo.arithmetic.sort;
  * @author luohaoyu
  * @since 2019-01-10 21:01
  **/
-public class chooseSort extends Sort<Integer> {
+public class ChooseSort extends Sort<Integer> {
     /**
      * 核心思想就是每次循环用index记录最小值的下标
      */
