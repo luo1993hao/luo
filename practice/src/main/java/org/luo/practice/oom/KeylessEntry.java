@@ -1,4 +1,4 @@
-package com.luo.oom;
+package org.luo.practice.oom;
 
 import java.util.HashMap;
 import java.util.Map;
