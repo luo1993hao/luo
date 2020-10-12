@@ -49,7 +49,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus</artifactId>
-                <version>3.0.6</version>
+                <version>3.1.0</version>
             </dependency>
             <!--mp代码生成-->
             <dependency>
@@ -112,7 +112,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>3.0.5</version>
+                <version>3.1.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
