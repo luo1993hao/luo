@@ -3,6 +3,7 @@ package org.luo.arithmetic.list;
 import lombok.AllArgsConstructor;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class DoubleLinkList<E> {
     private Node<E> head;
@@ -68,16 +69,48 @@ public class DoubleLinkList<E> {
         length--;
     }
 
+    public void remove(E e) {
+        Node<E> deleteData = null;
+        Node<E> first = head;
+        while (first != null) {
+            if (Objects.equals(first.data, e)) {
+                deleteData = first;
+                break;
+            }
+            first = first.next;
+        }
+        if (deleteData == null) {
+            throw new RuntimeException("error data");
+        }
+        Node<E> pre = deleteData.pre;
+        Node<E> next = deleteData.next;
+        if (Objects.equals(deleteData, head)) {
+            this.removeFirst();
+            return;
+        }
+        if (Objects.equals(deleteData, tail)) {
+            this.removeLast();
+            return;
+        }
+        pre.next = next;
+        next.pre = pre;
+        length--;
+
+
+    }
+
 
     public static void main(String[] args) {
         LinkedList<String> a = new LinkedList<>();
         a.addFirst("1");
         a.addFirst("2");
+        a.addFirst("3");
         a.removeLast();
         DoubleLinkList<String> doubleLinkList = new DoubleLinkList<>();
         doubleLinkList.addFirst("1");
         doubleLinkList.addFirst("2");
-        doubleLinkList.removeFirst();
+        doubleLinkList.addFirst("3");
+        doubleLinkList.remove("1");
 
     }
 }
