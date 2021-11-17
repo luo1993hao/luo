@@ -6,9 +6,11 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Getter
 public class LinkedBinaryTree<E> {
     private Node<E> root;
+
 
     private static class Node<E> {
         private E data;
@@ -22,49 +24,30 @@ public class LinkedBinaryTree<E> {
         public Node() {
         }
     }
-
-    public void create(List<E> input) {
-        this.root = createBinaryTreeWithPreOrder(input);
-    }
-
-    public void create1(List<E> input) {
-        this.root = createBinaryTreeWithInOrder(input);
-    }
-
     /**
-     * 前序方式创建二叉树
+     * 建立二叉树 两种方式：
+     * 1.给出自然顺序（没有值的按照null,其实就是完全二叉树或者满二叉树的输入）。
+     *  2.给出先序+中序 or  中序+后序
      */
-    private Node<E> createBinaryTreeWithPreOrder(List<E> inputList) {
-        if (inputList == null || inputList.isEmpty()) {
-            return null;
-        }
-        Node<E> node = null;
-        E value = inputList.remove(0);
-        if (value != null) {
-            node = new Node<>(value);
-            node.leftChild = createBinaryTreeWithPreOrder(inputList);
-            node.rightChild = createBinaryTreeWithPreOrder(inputList);
-        }
-        return node;
-    }
-
     /**
-     * 中序方式创建二叉树
+     * 自然顺序创建
+     * ABC#DEF
+     *
+     * @param data
+     * @param index
+     * @return
      */
-    private Node<E> createBinaryTreeWithInOrder(List<E> inputList) {
-        if (inputList == null || inputList.isEmpty()) {
-            return null;
-        }
+    public Node<E> create(List<E> data, int index) {
         Node<E> node = null;
-        E value = inputList.remove(0);
-        if (value != null) {
+        if (index < data.size() && data.get(index) != null) {
             node = new Node<>();
-            node.leftChild = createBinaryTreeWithInOrder(inputList);
-            node.data = value;
-            node.rightChild = createBinaryTreeWithInOrder(inputList);
+            node.data = data.get(index);
+            node.leftChild = create(data, 2 * index + 1);
+            node.rightChild = create(data, 2 * index + 2);
         }
         return node;
     }
+
 
     /**
      * 前序:根->左->右
@@ -107,13 +90,11 @@ public class LinkedBinaryTree<E> {
 
 
     public static void main(String[] args) {
+        //自然顺序
         LinkedBinaryTree<String> linkedBinaryTree = new LinkedBinaryTree<>();
+        List<String> strings = Lists.newArrayList("A", "B", "C", null, "D", "E", "F");
+        linkedBinaryTree.create(strings, 0);
+        // 先序创建
 
-        ArrayList<String> preOrderList = Lists.newArrayList("A", "B", null, "D", null, null, "C", null, null);
-        ArrayList<String> inOrderList = Lists.newArrayList(null, "B", null, "D", null, "A", null, "C", null);
-//        linkedBinaryTree.create(preOrderList);
-        linkedBinaryTree.create1(inOrderList);
-//        linkedBinaryTree.preOrderTraversal(linkedBinaryTree.getRoot());
-        linkedBinaryTree.inOrderTraversal(linkedBinaryTree.getRoot());
     }
 }
