@@ -60,7 +60,6 @@ public class LinkedThreadBinaryTree<E> {
 
 
     public static void main(String[] args) {
-        //ABCD#EF#G
         List<String> strings = Lists.newArrayList("A", "B", "C", null, "D", "E", "F");
         LinkedThreadBinaryTree<String> objectLinkedThreadBinaryTree = new LinkedThreadBinaryTree<>();
         objectLinkedThreadBinaryTree.create(strings);
