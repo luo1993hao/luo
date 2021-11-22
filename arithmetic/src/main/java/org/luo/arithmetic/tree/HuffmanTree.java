@@ -4,12 +4,15 @@ import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.Getter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Getter
 public class HuffmanTree {
     private Node root;
+    private static Map<String, String> huffmanCodes = new HashMap<>();
 
     @Data
     private static class Node implements Comparable<Node> {
@@ -32,6 +35,28 @@ public class HuffmanTree {
 
     public void create(List<Node> nodes) {
         this.root = this.init(nodes);
+    }
+
+    public Map<String, String> createCodes() {
+        StringBuilder builder = new StringBuilder();
+        // 处理左子树
+        createCodes(root.getLeftChild(), "0", builder);
+        // 处理右子树
+        createCodes(root.getRightChild(), "1", builder);
+        return huffmanCodes;
+    }
+
+    private void createCodes(Node node, String code, StringBuilder builder) {
+        StringBuilder builder2 = new StringBuilder(builder);
+        builder2.append(code);
+        if (node != null) {
+            if (node.leftChild != null && node.rightChild != null) {
+                createCodes(node.leftChild, "0", builder2);
+                createCodes(node.rightChild, "1", builder2);
+            } else {
+                huffmanCodes.put(node.name, builder2.toString());
+            }
+        }
     }
 
     private Node init(List<Node> nodes) {
@@ -70,7 +95,7 @@ public class HuffmanTree {
                 new Node(8, "F")
         ));
         System.out.println(huffmanTree.getRoot().getWeight());
-
+        huffmanTree.createCodes();
     }
 
 }
