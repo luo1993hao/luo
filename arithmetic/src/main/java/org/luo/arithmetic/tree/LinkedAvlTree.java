@@ -18,7 +18,7 @@ public class LinkedAvlTree {
     }
 
     private void updateHeight(Node node) {
-        if (node.isLeft()) {
+        if (node.isLeaf()) {
             node.height = 0;
         } else {
             node.height = 1 + Math.max(getHeight(node.leftNode), getHeight(node.rightNode));
@@ -107,7 +107,7 @@ public class LinkedAvlTree {
         private Node leftNode;
         private Node rightNode;
 
-        private boolean isLeft() {
+        private boolean isLeaf() {
             return this.leftNode == null && this.rightNode == null;
         }
 
