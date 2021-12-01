@@ -175,7 +175,7 @@ public class LinkedSortBinaryTree {
         int[] data = new int[]{62, 88, 58, 47, 35, 29, 37, 36, 51, 49, 56, 48, 50, 73, 99, 88, 93};
         LinkedSortBinaryTree linkedSortBinaryTree = new LinkedSortBinaryTree();
         linkedSortBinaryTree.init(data);
-        linkedSortBinaryTree.delete(47);
+        linkedSortBinaryTree.delete(62);
 //        linkedSortBinaryTree.delete(99);
 //        linkedSortBinaryTree.delete(58);
         System.out.println(linkedSortBinaryTree.isExist(99));
