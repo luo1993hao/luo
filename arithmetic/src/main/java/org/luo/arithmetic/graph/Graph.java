@@ -7,6 +7,8 @@ public interface Graph<E> {
 
     int getVertexNum();
 
+    int getEdgeNum();
+
     boolean addEdge(E from, E to);
 
     boolean addEdge(E from, E to, int weight);
