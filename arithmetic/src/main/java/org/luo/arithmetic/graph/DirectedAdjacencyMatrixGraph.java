@@ -12,7 +12,7 @@ public class DirectedAdjacencyMatrixGraph<E> extends AdjacencyMatrixGraph<E> {
     public boolean addEdge(E from, E to) {
         Integer fromIndex = this.getVertexIndex(from);
         Integer toIndex = this.getVertexIndex(to);
-        if (Objects.nonNull(from) && Objects.nonNull(toIndex)) {
+        if (Objects.nonNull(fromIndex) && Objects.nonNull(toIndex)) {
             this.edges[fromIndex][toIndex] = 1;
             edgeNumber++;
             return true;
@@ -22,16 +22,10 @@ public class DirectedAdjacencyMatrixGraph<E> extends AdjacencyMatrixGraph<E> {
 
     }
 
+
     @Override
-    public boolean removeEdge(E from, E to) {
-        Integer fromIndex = this.getVertexIndex(from);
-        Integer toIndex = this.getVertexIndex(to);
-        if (Objects.nonNull(from) && Objects.nonNull(toIndex)) {
-            this.edges[fromIndex][toIndex] = 0;
-            edgeNumber--;
-            return true;
-        }
-        return false;
+    public void changeEdges(Integer fromIndex, Integer toIndex) {
+        this.edges[fromIndex][toIndex] = 0;
     }
 
     @Override

@@ -21,17 +21,12 @@ public class DirectedAdjacencyWeightMatrixGraph<E> extends AdjacencyMatrixGraph<
         throw new UnsupportedOperationException();
     }
 
+
     @Override
-    public boolean removeEdge(E from, E to) {
-        Integer fromIndex = this.getVertexIndex(from);
-        Integer toIndex = this.getVertexIndex(to);
-        if (Objects.nonNull(from) && Objects.nonNull(toIndex)) {
-            //理论上应该置为正无穷
-            this.edges[fromIndex][toIndex] =0;
-            edgeNumber--;
-            return true;
-        }
-        return false;
+    public void changeEdges(Integer fromIndex, Integer toIndex) {
+        //理论上应该置为正无穷
+        this.edges[fromIndex][toIndex] = 0;
+
     }
 
     @Override
