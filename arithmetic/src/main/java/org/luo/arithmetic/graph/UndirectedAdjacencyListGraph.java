@@ -8,7 +8,7 @@ public class UndirectedAdjacencyListGraph<E> implements Graph<E> {
     private int edgeNumber;
 
     private static class Edge {
-        private int vertexIndex;
+        private final int vertexIndex;
         private Edge nextEdge;
 
         public Edge(int vertexIndex) {
@@ -21,11 +21,24 @@ public class UndirectedAdjacencyListGraph<E> implements Graph<E> {
     }
 
     private static class Vertex<E> {
-        private E data;
+        private final E data;
         private Edge firstEdge;
 
         public Vertex(E data) {
             this.data = data;
+        }
+
+        public Integer getEdgeCount() {
+            if (firstEdge == null) {
+                return 0;
+            }
+            int result = 1;
+            Edge firstEdge = this.firstEdge;
+            while (firstEdge.nextEdge != null) {
+                result++;
+                firstEdge.nextEdge = firstEdge.nextEdge.nextEdge;
+            }
+            return result;
         }
 
         public void addEdge(Integer toIndex) {
@@ -119,7 +132,43 @@ public class UndirectedAdjacencyListGraph<E> implements Graph<E> {
 
     @Override
     public boolean removeVertex(E e) {
-        return false;
+        //handle vertex
+        Integer removeIndex = this.getVertexIndex(e);
+        if (Objects.isNull(removeIndex)) {
+            return false;
+        }
+        this.edgeNumber = this.edgeNumber - vertexes[removeIndex].getEdgeCount();
+        int newVertexNumber = vertexNumber - 1;
+        Vertex<E>[] newVertex = new Vertex[newVertexNumber];
+        for (int i = 0; i < removeIndex; i++) {
+            newVertex[i] = vertexes[i];
+        }
+        for (int i = removeIndex; i < vertexes.length - 1; i++) {
+            newVertex[i] = vertexes[i + 1];
+        }
+        this.vertexes = newVertex;
+        this.vertexNumber = newVertexNumber;
+
+        //handle edge
+        for (Vertex<E> vertex : newVertex) {
+            Edge firstEdge = vertex.firstEdge;
+            if (firstEdge != null) {
+                if (firstEdge.vertexIndex == removeIndex) {
+                    vertex.firstEdge = firstEdge.nextEdge;
+                    continue;
+                }
+
+                while (firstEdge.nextEdge != null) {
+                    if (firstEdge.nextEdge.vertexIndex == removeIndex) {
+                        firstEdge.nextEdge = firstEdge.nextEdge.nextEdge;
+                    } else {
+                        firstEdge = firstEdge.nextEdge;
+                    }
+                }
+            }
+
+        }
+        return true;
     }
 
     @Override
@@ -147,7 +196,7 @@ public class UndirectedAdjacencyListGraph<E> implements Graph<E> {
         undirectedAdjacencyListGraph.addEdge("A", "D");
         undirectedAdjacencyListGraph.addEdge("B", "D");
         undirectedAdjacencyListGraph.addEdge("C", "D");
-        undirectedAdjacencyListGraph.removeEdge("A", "C");
-
+//        undirectedAdjacencyListGraph.removeEdge("A", "C");
+        undirectedAdjacencyListGraph.removeVertex("A");
     }
 }
