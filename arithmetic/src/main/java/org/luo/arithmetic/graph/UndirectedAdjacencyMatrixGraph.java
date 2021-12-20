@@ -2,7 +2,7 @@ package org.luo.arithmetic.graph;
 
 import java.util.Objects;
 
-public class UndirectedAdjacencyMatrixGraph<E> extends AdjacencyMatrixGraph<E> {
+public class UndirectedAdjacencyMatrixGraph<E> extends AbstractAdjacencyMatrixGraph<E> {
 
     public UndirectedAdjacencyMatrixGraph(int maxVertexes) {
         super(maxVertexes);

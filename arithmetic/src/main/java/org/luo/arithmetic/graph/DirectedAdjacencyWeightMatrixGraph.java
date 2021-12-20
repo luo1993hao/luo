@@ -2,7 +2,7 @@ package org.luo.arithmetic.graph;
 
 import java.util.Objects;
 
-public class DirectedAdjacencyWeightMatrixGraph<E> extends AdjacencyMatrixGraph<E> {
+public class DirectedAdjacencyWeightMatrixGraph<E> extends AbstractAdjacencyMatrixGraph<E> {
 
     public DirectedAdjacencyWeightMatrixGraph(int maxVertexes) {
         super(maxVertexes);

@@ -19,5 +19,9 @@ public interface Graph<E> {
 
     void display();
 
+    void dfs();
+
+    void bfs();
+
 
 }

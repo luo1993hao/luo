@@ -2,13 +2,13 @@ package org.luo.arithmetic.graph;
 
 import java.util.Objects;
 
-public abstract class AdjacencyMatrixGraph<E> implements Graph<E> {
+public abstract class AbstractAdjacencyMatrixGraph<E> implements Graph<E> {
     private E[] vertexes;
     protected int[][] edges = new int[4][4];
     private int vertexNumber;
     protected int edgeNumber;
 
-    public AdjacencyMatrixGraph(int maxVertexes) {
+    public AbstractAdjacencyMatrixGraph(int maxVertexes) {
         this.vertexes = (E[]) new Object[maxVertexes];
     }
 
@@ -99,5 +99,15 @@ public abstract class AdjacencyMatrixGraph<E> implements Graph<E> {
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public void dfs() {
+
+    }
+
+    @Override
+    public void bfs() {
+
     }
 }

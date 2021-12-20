@@ -2,9 +2,9 @@ package org.luo.arithmetic.graph;
 
 import java.util.Objects;
 
-public class DirectedAdjacencyMatrixGraph<E> extends AdjacencyMatrixGraph<E> {
+public class DirectedAbstractAdjacencyMatrixGraph<E> extends AbstractAdjacencyMatrixGraph<E> {
 
-    public DirectedAdjacencyMatrixGraph(int maxVertexes) {
+    public DirectedAbstractAdjacencyMatrixGraph(int maxVertexes) {
         super(maxVertexes);
     }
 
@@ -35,7 +35,7 @@ public class DirectedAdjacencyMatrixGraph<E> extends AdjacencyMatrixGraph<E> {
 
 
     public static void main(String[] args) {
-        Graph<String> directedAdjacencyMatrixGraph = new DirectedAdjacencyMatrixGraph<>(4);
+        Graph<String> directedAdjacencyMatrixGraph = new DirectedAbstractAdjacencyMatrixGraph<>(4);
         directedAdjacencyMatrixGraph.insertVex("A");
         directedAdjacencyMatrixGraph.insertVex("B");
         directedAdjacencyMatrixGraph.insertVex("C");

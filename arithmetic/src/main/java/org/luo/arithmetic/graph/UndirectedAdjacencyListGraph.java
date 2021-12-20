@@ -176,6 +176,16 @@ public class UndirectedAdjacencyListGraph<E> implements Graph<E> {
 
     }
 
+    @Override
+    public void dfs() {
+
+    }
+
+    @Override
+    public void bfs() {
+
+    }
+
     private Integer getVertexIndex(E e) {
         for (int i = 0; i < vertexes.length; i++) {
             if (vertexes[i].data == e) {
