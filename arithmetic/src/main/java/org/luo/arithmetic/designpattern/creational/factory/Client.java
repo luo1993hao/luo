@@ -22,7 +22,8 @@ package org.luo.arithmetic.designpattern.creational.factory;
  * 每次增加一个产品时，都需要增加一个具体类和对象实现工厂 （抽象工厂解决了这个缺点）
  * <p>
  * 源码中的使用：
- * spring的FactoryBean，beanFactory
+ * spring的FactoryBean（如果你想使用工厂设计模式，就让你的工厂实现这个FactoryBean接口。只要实现了这个接口）beanFactory
+ * 就是让程序员就是明明白白的告诉Spring, 我这个是工厂Bean，不是用来创造自身的，而是用来给其他的类创建Bean的。
  * 个人理解：
  * 工厂模式角色跟抽象工厂角色一致。工厂模式为抽象工厂的弱化模式。
  * 最大的区别是工厂模式只是生产一种产品（例如小米电脑）。
