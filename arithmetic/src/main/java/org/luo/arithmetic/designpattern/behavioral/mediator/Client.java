@@ -1,5 +1,10 @@
 package org.luo.arithmetic.designpattern.behavioral.mediator;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 /**
  * 定义：
  * 定义一个中介对象来封装一系列对象之间的交互，使原有对象之间的耦合松散，
@@ -25,27 +30,25 @@ package org.luo.arithmetic.designpattern.behavioral.mediator;
  * 2.中介出问题，整个程序玩完，道理和卖房中介卷钱跑路一样
  * 源码使用：
  * 1.java.util.Timer
- *    Timer timer = new Timer();
- *         timer.schedule(new MyOneTask(), 3000, 1000); // 3秒后开始运行，循环周期为 1秒
- *         timer.schedule(new MyTwoTask(), 3000, 1000);
+ * Timer timer = new Timer();
+ * timer.schedule(new MyOneTask(), 3000, 1000); // 3秒后开始运行，循环周期为 1秒
+ * timer.schedule(new MyTwoTask(), 3000, 1000);
  * Timer 这个中介者的功能就是定时调度我们写的各种任务，
-
+ * <p>
  * 给 TimerThread 执行，让任务与执行线程解耦。
  * 2. MVC模式中，Controller 是中介者，根据 View 层的请求来操作 Model 层
  * java.util.concurrent.Executor#execute 和 java.util.concurrent.ExecutorService#submit 与 Timer#schedule 类似
  * 个人理解：
- *
+ * <p>
  * 核心思想就是当众多类相互引用的时候，使用一个中介类来降低耦合。
  * 微服务的注册中心也可以理解为中介者。
  * 没有注册中心之前微服务之间相互引用。整个依赖关系形成了网状，关系错综复杂，非常难以管理。有了过后他们之间的关系就从"网状"->以注册中心为中心的"星状"
  * 微服务之间就没有直接联系。
  * 个人感觉中介者模式在日常使用中谨慎使用。在我们正常开发时，一个对象引用几个对象，太正常不过。
  * 如果无脑的使用中介者模式，必然带来项目代码紊乱。
- *
- *
  */
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         // 实例化房屋中介
         Mediator mediator = new HouseMediator();
 
