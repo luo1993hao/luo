@@ -1,13 +1,16 @@
 package org.luo.arithmetic.leetcode.treenode;
 
 /**
- * 这题主要是要想明白。"以小见大"
+ * 下面三个题都是一个模版的题目
+ * 关键词:二叉树，dfs,非根节点。
+ * <p>
+ * 主要是要想明白。"以小见大"
  * 如果a,b,c为整个树的一部分
- *
- *          a
- *        /   \
- *      b      c
- *
+ * <p>
+ * a
+ * /   \
+ * b      c
+ * <p>
  * 这题的结果 要么为
  * 1.a+b+c
  * 2.为a+b+a的父节点
@@ -37,5 +40,68 @@ public class No124 {
         int right = Math.max(0, dfs(root.right));
         result = Math.max(result, left + root.val + right);
         return root.val + Math.max(left, right);
+    }
+
+    /**
+     * 687
+     *
+     * @param root
+     * @return
+     */
+    private Integer res = 0;
+
+    public int longestUnivaluePath(TreeNode root) {
+        this.dfs1(root);
+        return res;
+    }
+
+    public int dfs1(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = dfs1(node.left);
+        int right = dfs1(node.right);
+        int nowLeft = 0;
+        int nowRight = 0;
+        if (node.left != null && node.val == node.left.val) {
+            nowLeft = left + 1;
+        }
+        if (node.right != null && node.val == node.right.val) {
+            nowRight = right + 1;
+        }
+        res = Math.max(res, nowLeft + nowRight);
+        return Math.max(nowLeft, nowRight);
+    }
+
+
+    /**
+     * 543
+     *
+     * @param root
+     * @return
+     */
+    int result1 = 0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        this.dfs2(root);
+        return result1;
+    }
+
+    public int dfs2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = dfs2(root.left);
+        int right = dfs2(root.right);
+        int nowLeft = 0;
+        int nowRight = 0;
+        if (root.right != null) {
+            nowRight = right + 1;
+        }
+        if (root.left != null) {
+            nowLeft = left + 1;
+        }
+        result1 = Math.max(result1, nowRight + nowLeft);
+        return Math.max(nowLeft, nowRight);
     }
 }
